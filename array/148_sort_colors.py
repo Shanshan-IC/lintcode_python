@@ -8,19 +8,18 @@ class Solution:
     @return: nothing
     """
     def sortColors(self, nums):
-        left, right = 0, len(nums)-1
-        for i in xrange(len(nums)):
+        i, left, right = 0, 0, len(nums)-1
+        while i <= right:
             while left == i and nums[left] == 0:
                 left += 1
                 i += 1
-            while left <= right and nums[right] == 2:
+            while right >= 0 and nums[right] == 2:
                 right -= 1
-            if i <= right:
-                if nums[i] == 0:
-                    nums[left], nums[i] = nums[i], nums[left]
-                    left += 1
-                elif nums[i] == 2:
-                    nums[right], nums[i] = nums[i], nums[right]
-                    right -= 1
-                else:
-                    i += 1
+            if nums[i] == 0:
+                nums[left], nums[i] = nums[i], nums[left]
+                left += 1
+            elif nums[i] == 2:
+                nums[right], nums[i] = nums[i], nums[right]
+                right -= 1
+            else:
+                i += 1
